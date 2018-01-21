@@ -1,0 +1,54 @@
+*appsettings.json
+*config.json
+*.dll
+*.vs*
+*.user
+WeddingWebsiteApi/bin/*
+WeddingWebsiteApi/obj/*
+
+WeddingWebsiteClient/src/assets/*
+
+
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+WeddingWebsiteClient/dist
+WeddingWebsiteClient/tmp
+WeddingWebsiteClient/out-tsc
+
+# dependencies
+WeddingWebsiteClient/node_modules
+
+# IDEs and editors
+WeddingWebsiteClient/.idea
+WeddingWebsiteClient.project
+WeddingWebsiteClient.classpath
+WeddingWebsiteClient.c9/
+WeddingWebsiteClient*.launch
+WeddingWebsiteClient.settings/
+WeddingWebsiteClient*.sublime-workspace
+
+# IDE - VSCode
+WeddingWebsiteClient.vscode/*
+!WeddingWebsiteClient.vscode/settings.json
+!WeddingWebsiteClient.vscode/tasks.json
+!WeddingWebsiteClient.vscode/launch.json
+!WeddingWebsiteClient.vscode/extensions.json
+
+# misc
+WeddingWebsiteClient/.sass-cache
+WeddingWebsiteClient/connect.lock
+WeddingWebsiteClient/coverage
+WeddingWebsiteClient/libpeerconnection.log
+WeddingWebsiteClientnpm-debug.log
+WeddingWebsiteClienttestem.log
+WeddingWebsiteClient/typings
+
+# e2e
+WeddingWebsiteClient/e2e/*.js
+WeddingWebsiteClient/e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db

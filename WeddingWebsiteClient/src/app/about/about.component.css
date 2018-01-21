@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Spectral+SC:400,400i');
+h1, h2, h3, h4 {
+    font-family: 'Spectral SC', serif;
+}
+
+.history-section div {
+    font-size: 14px;
+}

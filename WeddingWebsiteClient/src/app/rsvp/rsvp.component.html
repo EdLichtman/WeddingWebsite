@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="col-sm-offset-3 col-sm-6">
+    <div class="form-group">
+      <label for="rsvpId">RSVP Number:</label>
+      <input type="text" class="form-control" id="rsvpId" [(ngModel)]="currentRsvpId" />
+    </div>
+
+
+    <a class="btn btn-primary" (click)="setCurrentRsvp(currentRsvpId)">
+      Find me!
+    </a>
+  </div>
+</div>
+<div *ngIf="currentRsvp">
+
+
+  <div class="row">
+    <div class="text-center">
+      <h4>Welcome, {{currentRsvp.referenceName}}!</h4>
+      <h4>You have {{currentRsvp.numberOfGuestsRemaining()}} unreserved spots!</h4>
+      <div>
+        <span *ngIf="this.currentRsvp.hasResponded">You have already submitted your RSVP</span>
+        <span *ngIf="!this.currentRsvp.hasResponded">You have not yet submitted your RSVP</span>
+      </div>
+      <a class="btn btn-primary" *ngIf="!currentRsvp.hasResponded" (click)="setUserResponseToNotGoing()">
+        I will be unable to attend
+      </a>
+      <a class="btn btn-primary" *ngIf="currentRsvp.hasResponded" (click)="resetUserResponse()">
+        Click to Re-submit your RSVP
+      </a>
+    </div>
+
+  </div>
+
+  <div class="row" *ngFor="let rsvp of currentRsvp.guests; let i = index">
+    <div class="hidden">
+      <input type="text" [ngClass]="{'hidden':true, 'disabled': currentRsvp.hasResponded}" [(ngModel)]="currentRsvp.guests[i].guestRsvpId">
+    </div>
+    <div class="col-sm-offset-3 col-sm-6">
+
+      <div *ngIf="currentRsvp.guests.length > 1">
+        <h4 class="strong">Guest {{i + 1}}:</h4>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="guest_firstname_{{i}}">First Name:</label>
+          <input type="text" id="guest_firstname_{{i}}" [disabled]="currentRsvp.hasResponded == true"
+            [ngClass]="{'form-control':true, 'disabled': currentRsvp.hasResponded}" [(ngModel)]="currentRsvp.guests[i].firstName">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label for="guest_lastname_{{i}}">Last Name:</label>
+          <input type="text" id="guest_lastname_{{i}}" [disabled]="currentRsvp.hasResponded == true"
+            [ngClass]="{'form-control':true, 'disabled': currentRsvp.hasResponded}" [(ngModel)]="currentRsvp.guests[i].lastName">
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="form-group">
+          <label for="guest_foodallergies_{{i}}">Food Allergies:</label>
+          <textarea id="guest_foodallergies_{{i}}" [disabled]="currentRsvp.hasResponded == true"
+            [ngClass]="{'form-control':true, 'disabled': currentRsvp.hasResponded}" [(ngModel)]="currentRsvp.guests[i].foodAllergies"></textarea>
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <label>
+          Options:
+        </label>
+        <div class="checkbox">
+          <label for="guest_should_be_deleted_{{i}}">
+              <input type="checkbox" id="guest_should_be_deleted_{{i}}" 
+              [disabled]="currentRsvp.hasResponded == true" [(ngModel)]="currentRsvp.guests[i].isToBeDeleted"/>
+              <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+              Remove From Guest List
+          </label>
+        </div>
+        </div>
+    </div>
+  </div>
+  <div class="row text-center">
+    <a class="btn btn-primary" (click)="submitRsvp(currentRsvp.guests)" [ngClass]="{hidden: currentRsvp.hasResponded}">
+    Submit
+  </a>
+  </div>
+
+</div>
