@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using WeddingWebsiteApi.Controllers.Photos;
 
 namespace WeddingWebsiteApi.Controllers
 {
@@ -21,15 +22,31 @@ namespace WeddingWebsiteApi.Controllers
 
         // GET api/values
         [HttpGet]
+        [IsApproved]
         public IList<string> Iris()
         {
             return GetPictureUrlsByFolder("iris");   
         }
 
         [HttpGet]
+        [IsApproved]
         public IList<string> Engagement()
         {
             return GetPictureUrlsByFolder("engagement");
+        }
+
+        [HttpGet]
+        public IEnumerable<string> GetApprovedRoutes()
+        {
+            var methods = typeof(PhotosController).GetMethods();
+            var approvedMethods = methods
+                .Where(m =>
+                        m.GetCustomAttributes(typeof(IsApprovedAttribute), false).Length > 0).ToList();
+                        
+            foreach (var method in approvedMethods)
+            {
+                yield return method.Name.ToLower();
+            };
         }
 
         private IList<string> GetPictureUrlsByFolder(string folderName)

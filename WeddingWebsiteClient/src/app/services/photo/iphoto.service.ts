@@ -1,5 +1,6 @@
 import { PhotoComponent } from "../../shared/photo/photo.component";
 
 export interface IPhotoService {
-    GetAllPhotos(subFolder: string) : Promise<string[]>
+    getAllPhotos(subFolder: string) : Promise<string[]>
+    getApprovedRoutes() : Promise<string[]>
 }

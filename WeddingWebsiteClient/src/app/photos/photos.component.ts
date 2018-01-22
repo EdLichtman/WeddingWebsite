@@ -15,7 +15,7 @@ export class PhotosComponent implements OnInit {
   private _route: ActivatedRoute;
   private _albumTitle: string;
 
-  approvedRoutes: string[] = ["iris"]
+  approvedRoutes: string[];
   photoService: IPhotoService;
   photos : Array<string>;
 
@@ -30,12 +30,13 @@ export class PhotosComponent implements OnInit {
       this.getAlbumFor(this._albumTitle);
     });
  
+    this.photoService.getApprovedRoutes().then(result => this.approvedRoutes = result);
     
   }
   
   getAlbumFor(title: string) : void {
     if (title)
-      this.photoService.GetAllPhotos(title).then(result => this.photos = result);
+      this.photoService.getAllPhotos(title).then(result => this.photos = result);
   }
 
   ngOnDestroy() {

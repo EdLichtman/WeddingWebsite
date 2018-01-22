@@ -16,16 +16,24 @@ export class PhotoService implements IPhotoService {
     this._http = http;
   }
 
-
-  async GetAllPhotos(subFolder: string): Promise<string[]> {
-    var photoEndpoint = this._http.appendUriSegment(this.apiEndpoint, subFolder)
+  async getAllPhotos(subFolder: string): Promise<string[]> {
+    var photoEndpoint = this._http.appendUriSegment(this.apiEndpoint, subFolder);
     
-    return this._http.get(photoEndpoint).then(result => {
-      if (result === null) {
-        return new Array<string>();
-      }
-      return JSON.parse(result);
-    })
+    return this._http.get(photoEndpoint).then(result => this.getStringArrayFromResult(result))
+  }
+
+  async getApprovedRoutes() : Promise<string[]> {
+    var photoEndpoint = this._http.appendUriSegment(this.apiEndpoint, "GetApprovedRoutes");
+
+    return this._http.get(photoEndpoint).then(result => this.getStringArrayFromResult(result))
+  }
+
+  private getStringArrayFromResult(result: any) : string[]{
+    if (result === null) {
+      return new Array<string>();
+    }
+    return JSON.parse(result);
+
   }
 }
 
