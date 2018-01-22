@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IPhotoService } from './iphoto.service'
 import { PhotoComponent } from '../../shared/photo/photo.component';
-import { HttpService } from '../http-service/http.service';
+import { HttpService } from '../http/http.service';
 
 
 
@@ -18,7 +18,7 @@ export class PhotoService implements IPhotoService {
 
 
   async GetAllPhotos(subFolder: string): Promise<string[]> {
-    var photoEndpoint = this.getPhotoRepositoryEndpoint(subFolder)
+    var photoEndpoint = this._http.appendUriSegment(this.apiEndpoint, subFolder)
     
     return this._http.get(photoEndpoint).then(result => {
       if (result === null) {
@@ -26,15 +26,6 @@ export class PhotoService implements IPhotoService {
       }
       return JSON.parse(result);
     })
-    
   }
-    
-    private getPhotoRepositoryEndpoint(apiEndpoint: string) : string{
-      if (!apiEndpoint.startsWith('/'))
-        apiEndpoint = '/' + apiEndpoint
-      return this.apiEndpoint + apiEndpoint
-    }
-          
-
-  }
+}
 

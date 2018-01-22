@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IPhotoService } from '../services/photo/iphoto.service';
-import { PhotoComponent } from '../shared/photo/photo.component';
 import { PhotoService } from '../services/photo/photo.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-photos',
@@ -11,15 +11,35 @@ import { PhotoService } from '../services/photo/photo.service';
 })
 export class PhotosComponent implements OnInit {
 
-  photoService: IPhotoService
+  private routeSubscription: any;
+  private _route: ActivatedRoute;
+  private _albumTitle: string;
+
+  approvedRoutes: string[] = ["iris"]
+  photoService: IPhotoService;
   photos : Array<string>;
 
-  constructor(photoService : PhotoService) { 
+  constructor(photoService : PhotoService, route: ActivatedRoute) { 
     this.photoService = photoService;
+    this._route = route;
   }
 
   ngOnInit() {
-    this.photoService.GetAllPhotos("Iris").then(result => this.photos = result);
+    this.routeSubscription = this._route.params.subscribe(params => {
+      this._albumTitle = params['albumtitle'];
+      this.getAlbumFor(this._albumTitle);
+    });
+ 
+    
+  }
+  
+  getAlbumFor(title: string) : void {
+    if (title)
+      this.photoService.GetAllPhotos(title).then(result => this.photos = result);
+  }
+
+  ngOnDestroy() {
+    this.routeSubscription.unsubscribe();
   }
 
 }

@@ -31,14 +31,7 @@ export class RsvpComponent implements OnInit{
 
   async setCurrentRsvp(id: number): Promise<void> {
     this.currentRsvp = undefined;
-    await this.rsvpService.getRsvpById(id)
-    .subscribe(data => {this.currentRsvp = new Rsvp(
-        data.id, 
-        data.referenceName, 
-        data.numberOfGuests, 
-        data.hasResponded, 
-        data.guests);
-      });
+    await this.rsvpService.getRsvpById(id).then(result => this.currentRsvp = result);
   }
 
   resetUserResponse(){

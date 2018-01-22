@@ -9,7 +9,7 @@ export class HttpService {
 
   public setBaseUri(uri: string) {
     if (uri.charAt(uri.length - 1) === '/')
-      uri = uri.substr(0, uri.length - 2);
+      uri = uri.substr(0, uri.length - 1);
 
     this._baseUri = uri;
 
@@ -25,10 +25,20 @@ export class HttpService {
       .toPromise()
   }
 
-  private getApiUri(apiEndpoint: string) {
-    if (!apiEndpoint.startsWith('/'))
-      apiEndpoint = '/' + apiEndpoint
-    return this._baseUri + apiEndpoint
+  public async post(apiPath: string, body: any) : Promise<string> {
+    return this._http.post(this.getApiUri(apiPath), body)
+      .map(response => JSON.stringify(response.json()))
+      .toPromise()
+
   }
 
+  public appendUriSegment(firstSegment: string, secondSegment: string) : string{
+    if (!secondSegment.startsWith('/'))
+      secondSegment = '/' + secondSegment;
+    return firstSegment + secondSegment;
+  }
+        
+  private getApiUri(apiEndpoint: string) {
+    return this.appendUriSegment(this._baseUri, apiEndpoint)
+  }
 }

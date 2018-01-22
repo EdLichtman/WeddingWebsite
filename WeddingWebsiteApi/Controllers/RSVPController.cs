@@ -22,7 +22,7 @@ namespace WeddingWebsiteApi.Controllers
         public IList<RSVP> GetRSVPs()
         {
             return _database.FetchOneToMany<RSVP>(rsvp => (List<Guest>)rsvp.Guests,
-                "select rsvp.*, guest.* from rsvp left outer join guest on rsvp.id = guest.rsvp_id");
+                "select rsvp.*, guest.* from rsvp left outer join guest on rsvp.id = guest.rsvp_id order by id, rsvp_id");
         }
         [HttpGet]
         public RSVP GetRSVPById(int id)
