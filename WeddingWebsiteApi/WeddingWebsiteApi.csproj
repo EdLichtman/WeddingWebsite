@@ -9,9 +9,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
+    <PackageReference Include="Fluentvalidation.aspnetcore" Version="7.3.4" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
+    <PackageReference Include="Microsoft.aspnetcore.authentication.jwtbearer" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.design" Version="1.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.tools" Version="2.0.1" />
+    <PackageReference Include="microsoft.identitymodel.tokens" Version="5.1.5" />
     <PackageReference Include="MySql.Data" Version="6.10.5" />
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="6.10.5" />
     <PackageReference Include="npoco" Version="3.9.2" />
+    <PackageReference Include="system.identitymodel.tokens.jwt" Version="5.1.5" />
+
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.tools.dotnet" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
