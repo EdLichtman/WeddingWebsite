@@ -21,7 +21,6 @@ import { ConfigurationService } from './services/configuration/configuration.ser
 import { HttpService } from './services/http/http.service';
 import { PhotoComponent } from './shared/photo/photo.component';
 import { ActivatedRoute } from '@angular/router/src/router_state';
-import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -31,8 +30,7 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     PhotosComponent,
     RsvpComponent,
-    AboutComponent,
-    LoginComponent
+    AboutComponent
   ],
   imports: [
     BrowserModule,

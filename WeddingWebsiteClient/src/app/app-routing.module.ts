@@ -5,7 +5,6 @@ import { HomeComponent } from './home/home.component';
 import { PhotosComponent } from './photos/photos.component';
 import { RsvpComponent } from './rsvp/rsvp.component';
 import { getRouteComponents } from './app-routing.util';
-import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
@@ -13,7 +12,6 @@ const routes: Routes = [
   { path: "rsvp", component: RsvpComponent},
   { path: "photos", component: PhotosComponent},
   { path: "photos/:albumtitle", component: PhotosComponent},
-  { path: "login", component: LoginComponent},
   { path: "**", component: HomeComponent }
 ]
 
