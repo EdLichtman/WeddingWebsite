@@ -4,12 +4,12 @@
     <div *ngIf="showRoutes">
     <div *ngFor="let route of approvedRoutes">
       <div class="col-xs-2">
-        <a class="btn btn-primary btn-block" [routerLink]="['/photos', route]">{{(route[0].toUpperCase() + route.substr(1))}}</a>
+        <a class="btn btn-primary btn-block" [ngClass]="showRoutes ? 'animated rotateInUpLeft' : ''" [routerLink]="['/photos', route]">{{(route[0].toUpperCase() + route.substr(1))}}</a>
       </div>
     </div>
   </div>
   <div *ngIf="!showRoutes" class="col-sm-4 col-sm-offset-4">
-    <button class="btn btn-primary btn-block" (click)="toggleImageRouteVisibility()">Show Routes</button>
+    <button class="btn btn-primary btn-block animated bounceInUp" (click)="toggleImageRouteVisibility()">Show Routes</button>
   </div>
   </div>
 <div *ngIf="photos">
@@ -17,7 +17,7 @@
     <div class="row bottom-space">
       <div *ngFor="let photo of (photoGroup)">
         <div class="col-sm-4">
-          <img [src]="photo" class="img-responsive">
+            <img [src]="photo.src" (click)="open(photos.indexOf(photo))" class="img-responsive">
         </div>
     </div>
   </div>

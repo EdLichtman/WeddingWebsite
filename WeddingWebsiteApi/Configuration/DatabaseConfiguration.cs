@@ -10,7 +10,7 @@ namespace WeddingWebsiteApi.Configuration
     {
         public DefaultDatabaseConfiguration(IConfiguration configuration)
         {
-            ConnectionString = configuration.GetSection("ConnectionStrings:AnonymousUser").Value;
+            ConnectionString = configuration.GetSection("ConnectionStrings:Root").Value;
             DatabaseType = DatabaseTypeConnectors.MySql;
         }
         public string ConnectionString { get; set; }

@@ -21,7 +21,8 @@ import { ConfigurationService } from './services/configuration/configuration.ser
 import { HttpService } from './services/http/http.service';
 import { PhotoComponent } from './shared/photo/photo.component';
 import { ActivatedRoute } from '@angular/router/src/router_state';
-
+import { LightboxModule } from 'angular2-lightbox'
+import { LightboxService } from './services/lightbox/lightbox.service'
 
 @NgModule({
   declarations: [
@@ -38,14 +39,16 @@ import { ActivatedRoute } from '@angular/router/src/router_state';
     HttpModule,
     AngularFireModule.initializeApp(ApplicationConfiguration.firebaseConfig),
     AlertModule.forRoot(),
-    FormsModule
+    FormsModule,
+    LightboxModule
     
   ],
   providers: [
     PhotoService,
     RsvpService,
     ConfigurationService,
-    HttpService],
+    HttpService,
+    LightboxService],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
