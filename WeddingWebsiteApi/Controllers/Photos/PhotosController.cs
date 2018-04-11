@@ -52,9 +52,9 @@ namespace WeddingWebsiteApi.Controllers
         private IList<string> GetPictureUrlsByFolder(string folderName)
         {
             var location = _clientApplicationPhotoLocationRoot + "\\" + folderName;
-            var jpgs = Directory.GetFiles(location, "*.jpg", SearchOption.TopDirectoryOnly).ToList();
-            var jpegs = Directory.GetFiles(location, "*.jpeg", SearchOption.TopDirectoryOnly).ToList();
-            var pngs = Directory.GetFiles(location, "*.png", SearchOption.TopDirectoryOnly).ToList();
+            var jpgs = Directory.GetFiles(location, "*.jpg", SearchOption.AllDirectories).ToList();
+            var jpegs = Directory.GetFiles(location, "*.jpeg", SearchOption.AllDirectories).ToList();
+            var pngs = Directory.GetFiles(location, "*.png", SearchOption.AllDirectories).ToList();
 
             return jpgs.Concat(jpegs).Concat(pngs)
                 .Select(image => image.Replace(_clientApplicationLocationRoot, "")).ToList();

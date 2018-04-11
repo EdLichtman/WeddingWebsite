@@ -71,3 +71,13 @@
 .checkbox label {
     font-size:".8em";
 }
+.img-horizontal {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+}
+.gallery-img {
+    margin-top:25%;
+    margin-bottom:25%;
+    width:100%;
+}

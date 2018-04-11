@@ -42,8 +42,12 @@ export class PhotosComponent implements OnInit {
     
   }
   
-  open(index: number): void {
-    this.lightboxService.open(index);
+  open(index: number, isSideways: boolean): void {
+    if (isSideways)
+      this.lightboxService.openSideways(index);
+    else {
+      this.lightboxService.open(index);
+    }
   }
 
   getPhotosInGroupsOfThree: Function = () : Array<Array<Photo>> => {

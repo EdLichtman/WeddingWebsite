@@ -17,7 +17,9 @@
     <div class="row bottom-space">
       <div *ngFor="let photo of (photoGroup)">
         <div class="col-sm-4">
-            <img [src]="photo.src" (click)="open(photos.indexOf(photo))" class="img-responsive">
+            <img [src]="photo.src" class="gallery-img" 
+            [ngClass]="photo.isSideways() ? 'img-horizontal' : ''"
+            (click)="open(photos.indexOf(photo), photo.isSideways())"/>
         </div>
     </div>
   </div>

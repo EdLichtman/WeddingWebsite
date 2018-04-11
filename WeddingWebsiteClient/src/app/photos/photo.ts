@@ -6,4 +6,7 @@ export class Photo implements IAlbum{
     public src: string;
     public caption: string;
     public thumb: string;
+    public isSideways: Function = () : boolean => {
+        return this.src.includes("horizontal")
+    }
 } 
